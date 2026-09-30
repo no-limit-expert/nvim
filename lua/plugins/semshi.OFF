@@ -1,0 +1,16 @@
+return {
+  {
+    "wookayin/semshi",
+    build = ":UpdateRemotePlugins", -- Tells lazy.nvim to register the remote Python plugin
+    version = "*",                  -- Use the latest stable release
+    ft = "python",                  -- Lazy-load only when opening Python files
+    init = function()
+      -- Optional: Disable the annoying error sign/underline under uncompleted lines
+      vim.g["semshi#error_sign"] = false
+    end,
+    config = function()
+      -- Semshi handles its own setup, but you can put extra configurations here if needed
+    end,
+  },
+}
+

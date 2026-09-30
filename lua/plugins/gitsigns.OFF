@@ -1,0 +1,12 @@
+return {
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      local gitsigns = require('gitsigns')
+      gitsigns.setup()
+
+      -- Keymap to preview the exact diff of the current hunk in a floating window
+      vim.keymap.set('n', '<space>hp', gitsigns.preview_hunk, { desc = 'Git Preview Hunk' })
+    end
+  }
+}

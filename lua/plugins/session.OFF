@@ -1,0 +1,36 @@
+return {
+  "folke/persistence.nvim",
+  event = "VimEnter",
+  opts = {
+    need = 0,      -- Prevents empty tabby structures from blocking saves
+    branch = true, -- Tracks unique sessions per git branch
+  },
+  config = function(_, opts)
+    local persistence = require("persistence")
+    persistence.setup(opts)
+
+    -- 1. Auto-restore your session if a file already exists on naked launch
+    if vim.fn.filereadable(persistence.current()) == 1 then
+      if vim.fn.argc() == 0 and vim.fn.getcwd() ~= vim.env.HOME then
+        persistence.load()
+      end
+    end
+
+    -- 2. Custom Quit logic using LazyVim's <leader>qq map
+    vim.keymap.set("n", "<leader>qq", function()
+      local session_file = persistence.current()
+
+      -- Check if you've already initialized a session in this directory in the past
+      if vim.fn.filereadable(session_file) == 1 then
+        -- Session exists! Force Neovim to overwrite the active layout cache, then exit
+        persistence.save()
+        vim.cmd("qa")
+      else
+        -- No session exists yet. Turn off persistence so it doesn't create one, then exit
+        persistence.stop()
+        vim.cmd("qa")
+      end
+    end, { desc = "Quit & Save Session (If Exists)" })
+  end,
+}
+
