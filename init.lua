@@ -10,6 +10,7 @@ vim.g.mapleader = ' '
 
 -- Line Numbers
 vim.opt.number = true          -- Enable line numbers
+vim.opt.relativenumber = false
 
 -- Indentation & Tabs
 vim.opt.tabstop = 4            -- Number of spaces that a <Tab> counts for
