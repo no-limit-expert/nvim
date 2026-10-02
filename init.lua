@@ -46,6 +46,8 @@ vim.opt.sessionoptions = 'curdir,folds,globals,help,tabpages,terminal,winsize'
 
 -- General Editor Keymaps
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', { desc = 'Open File Explorer' })
+vim.keymap.set('n', '<leader>qs', ':wqa<CR>', { desc = 'Close current split window' })
+vim.keymap.set('n', '<leader>qq', ':qa<CR>', { desc = 'Close current split window' })
 vim.keymap.set('n', '<leader>qw', ':close<CR>', { desc = 'Close current split window' })
 vim.keymap.set('n', '<Esc>', ':nohlsearch<CR><Esc>', { silent = true, desc = 'Clear search highlight' })
 
